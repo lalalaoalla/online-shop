@@ -18,10 +18,10 @@ class Product(models.Model):
     cost=models.DecimalField(max_digits=10,decimal_places=2)
     category=models.ForeignKey(CategoryProducts,on_delete=models.CASCADE)#тоже будет удален
     description=models.TextField()
-    image=models.ImageField()
+    image=models.ImageField(upload_to='products_images/')
     is_active=models.BooleanField(default=True)
-    created=models.DateTimeField()
-    updated=models.DateTimeField()
+    created=models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated=models.DateTimeField(auto_now_add=False, auto_now=True)
 
     class Meta:
         verbose_name = 'Товар'
