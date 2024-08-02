@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index/adventages.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/main-banner.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/new.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/popular.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/second-banner.css' %}">
+{%endblock%}
+{% block title %}
+
+<title>Пока такой</title>
+
+{%endblock%}
+
+{% block content %}
+
+<!--Здесь начинается основная часть-->
+        <div class="main-banner" style="background-image: url({% static 'img/banner1.png' %});">
+            <div class="offer">
+                <p>Фирменные палочки в подарок к каждому заказу!</p>
+                <a href="catalogue.html">Заказать</a>
+            </div>
+        </div>
+        <div class="adventages">
+            <div class="delivery">
+                <img src="{% static 'img/Icons/delivery.png' %}" alt="delivery">
+                <p>Быстрая доставка</p>
+            </div>
+            <div class="quality">
+                <img src="{% static 'img/Icons/flame.png' %}" alt="quality">
+                <p>Высокое качество</p>
+            </div>
+            <div class="sales">
+                <img src="{% static 'img/Icons/sale.png' %}" alt="sales">
+                <p>Частые скидки</p>
+            </div>
+            <div class="return">
+                <img src="{% static 'img/Icons/return.png' %}" alt="return">
+                <p>Бесплатный возврат</p>
+            </div>
+        </div>
+        <div class="popular">
+            <div class="title">Популярные товары</div>
+            <div class="items">
+                <!--zoom.js применяется внутри createcards.js-->
+                <!--Тут используется  createcards.js первая функция-->
+            </div>
+        </div>
+        <a href="catalogue.html" class="second-banner-link">
+            <div class="second-banner" style = "background-image: url({% static 'img/banner2.png' %});">
+                <div class="text">
+                    <p>1+1 = 3</p>
+                    <p>Закажи 2 соуса и получи третий в подарок</p>
+                </div>
+            </div>
+        </a>
+        <div class="new">
+            <p class="new-title">Новинки</p>
+            <div class="new-items">
+                <!--Также тут же начинает работать slider.js-->
+                <button class="slider-prev" style="background-image: url({% static 'img/arrow-left.png' %});"></button>
+                <div class="slider-container">
+                    <div class="slider-track">
+                        <!--Тут используется вторая функция createcards.js-->
+                        <div class="slider-item"></div>
+                        <div class="slider-item"></div>
+                        <div class="slider-item"></div>
+                        <div class="slider-item"></div>
+                        <div class="slider-item"></div>
+                        <div class="slider-item"></div>
+                    </div>
+                </div>
+                <button class="slider-next" style = "background-image: url({% static 'img/arrow-right.png' %});"></button>
+            </div>
+        </div>
+        {%endblock%}
+        <!--Здесь начинается футер-->
+        
+        {% block footer %}
+        <div class="back-btn">
+            <a href="#header">
+                <img src="{% static 'img/arrow-up5.png' %}" alt="back-scroll">
+            </a>
+        </div>
+        <div class="zoom-modal">
+            <div class="modal-content">
+                <div class="modal-item">
+                    <div class="modal-item-content">
+                        <img src="" class="modal-image" alt="tofu">
+                    </div>
+                </div>
+                <div class="about">
+                    <h1 class="modal-title"></h1>
+                    <p class="modal-price"></p>
+                    <p>Размеры:</p>
+                    <div class="sizes">
+                        <div>XS</div>
+                        <div>S</div>
+                        <div>M</div>
+                        <div>L</div>
+                        <div>XL</div>
+                    </div>
+                    <p class="modal-item-about"></p>
+                    <a href="product.html" onclick="buy(this)" class="modal-buy">Купить</a>
+                </div>
+                <span class="close">X</span>
+            </div>
+        </div>
+        {%endblock%}
+    {% block js %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/burger.js' %}"></script>
+    <script src="{% static 'js/zoom.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+    <script src="{% static 'js/createcards.js' %}"></script>
+    <script src="{% static 'js/scrolltoTop.js' %}"></script>
+    <script src="{% static 'js/product.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
+    {%endblock%}

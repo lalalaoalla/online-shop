@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+{% endblock %}
+{% block title%}
+<title> Tencho - LogIn</title>
+{% endblock %}
+
+{%block content %}
+        <div class="login-form">
+            <div class="login-title">
+                <p>Авторизация</p>
+            </div>
+            <div class="form">
+                <label for="login">Логин:</label>
+                <input type="text" placeholder="Введите логин" name="login" id="login">
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" placeholder="Введите пароль" id="password">
+                <div class="btn">
+                    <a href="#">Войти</a>
+                </div>
+                <div class="underline"></div>
+                <div class="login-via">
+                    <div class="via-google">
+                        <p>Используя</p>
+                        <img src="{% static 'img/Icons/google.png' %}" alt="google icon">
+                    </div>
+                    <div class="via-facebook">
+                        <p>Используя</p>
+                        <img src="{% static 'img/Icons/facebook.png' %}" alt="facebook icon">
+                    </div>
+                </div>
+                <a href="{% url 'users:registration'%}">Ещё нет аккаунта? Зарегистрируйтесь!</a>
+            </div>
+        </div>
+
+        {% endblock %}
+        {%block js%}
+    <script src="{% static 'js/burger.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+        {% endblock%}

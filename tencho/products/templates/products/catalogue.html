@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/catalogue/catalogue.css' %}">
+{% endblock%}
+
+{% block title %}
+<title>Tencho - Catalogue</title>
+{% endblock %}
+
+{% block content %}
+        <div class="catalogue">
+            <div class="filter">
+                <div class="filter-title">
+                    <p>Категории</p>
+                </div>
+                <div class="filters">
+                    <div class="categories" data-category="fish" onclick="reloadfilter(this)">
+                        <p>Рыба</p>
+                    </div>
+                    <div class="categories" data-category="tea" onclick="reloadfilter(this)">
+                        <p>Чай</p>
+                    </div>
+                    <div class="categories" data-category="souce" onclick="reloadfilter(this)">
+                        <p>Соусы</p>
+                    </div>
+                    <div class="categories" data-category="rice" onclick="reloadfilter(this)">
+                        <p>Рис</p>
+                    </div>
+                    <div class="categories" data-category="spicies" onclick="reloadfilter(this)">
+                        <p>Специи</p>
+                    </div>
+                    <div class="categories" data-category="soup" onclick="reloadfilter(this)">
+                        <p>Супы</p>
+                    </div>
+                    <div class="categories" data-category="tofu" onclick="reloadfilter(this)">
+                        <p >Тофу</p>
+                    </div>
+                    <div class="categories" data-category="mushrooms" onclick="reloadfilter(this)">
+                        <p >Грибы</p>
+                    </div>
+                </div>
+                <p class="clear">Очистить</p><!--Здесь у нас применяется вторая функция из filter.js, для очищения-->
+            </div>
+            <div class="catalogue-items">
+                <div class="items-title">
+                    <p>Каталог</p>
+                </div>
+                <div class="catalogue-items-list">
+                    <!--Здесь применяется cataloguegen.js-->
+                    <!--внутри catalogue.js применяется функция zoom-->
+                    <!--filter.js 1 функция-->
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block footer %}
+        <div class="back-btn">
+            <a href="#header">
+                <img src="{% static 'img/arrow-up5.png'  %}" alt="back-scroll">
+            </a>
+        </div>
+        <div class="zoom-modal">
+            <div class="modal-content">
+                <div class="modal-item">
+                    <div class="modal-item-content">
+                        <img src="" class="modal-image" alt="tofu">
+                    </div>
+                </div>
+                <div class="about">
+                    <h1 class="modal-title"></h1>
+                    <p class="modal-price"></p>
+                    <p>Размеры:</p>
+                    <div class="sizes">
+                        <div>XS</div>
+                        <div>S</div>
+                        <div>M</div>
+                        <div>L</div>
+                        <div>XL</div>
+                    </div>
+                    <p class="modal-item-about"></p>
+                    <a href="product.html" onclick="buy(this)" class="modal-buy">Купить</a>
+                </div>
+                <span class="close">X</span>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    {% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/burger.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+    <script src="{% static 'js/scrolltoTop.js' %}"></script>
+    <script src="{% static 'js/cataloguegen.js' %}"></script>
+    <script src="{% static 'js/zoom.js' %}"></script>
+    <script src="{% static 'js/filter.js' %}"></script>
+    <script src="{% static 'js/product.js' %}"></script>
+    {% endblock %}
+    </body>
+</html>

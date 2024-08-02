@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Tencho - About</title>
+{% endblock %}
+
+{% block content %}
+        <div class="about-tencho">
+            <img src="{% static 'img/aboutlogo.png' %}" alt="logo">
+            <p>Тенчо - имя японской эпохи. После эпохи Конина и до эпохи Дзивы. Этот период охватывал годы с января 824 по январь 834 года. Правящим императорам был Дзюнна-тэнно. Тенчо ганнэн 6 февраля 824 года: Название новой эры было создано для обозначения события или серии событий. Предыдущая эра закончилась, и новая началась в Конине 15, в 5-й день 1-го месяца 824 года.</p>
+            <p>Все продукты в<span> TENCHO </span>мы привозим прямиком из Японии. Все наши продукты имеют высокую планку качества и проходят множество различных проверок перед тем, как попасть в руки к покупателю.</p>
+        </div>
+        {% endblock %}
+       {% block js %}
+       <script src="/js/burger.js"></script>
+    <script src="/js/smooth-scroll.js"></script>
+    {%endblock%}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cabinet/cabinet.css' %}">
+{% endblock %}
+{% block title %}
+<title> Tencho - Account</title>
+{% endblock %}
+
+{% block content %}
+        <div class="cabinet">
+            <div class="cabinet-title">
+                <p>Личный кабинет</p>
+            </div>
+            <div class="cards">
+                <div class="big-cards">
+                    <div class="card user-info">
+                        <div class="top">
+                            <img src="{% static 'img/Icons/user.png'%}" alt="user">
+                            <p>Тимур Лебедев</p>
+                        </div>
+                        <div class="bot data-bot">
+                            <div class="data">
+                                <p>Телефон: +7 (962) 260 61 57</p>
+                                <p>Email: assi1122334455@gmail.com</p>
+                            </div>
+                            <div class="logout">
+                                <p>Выйти</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card delivery-info">
+                        <div class="top">
+                            <img src="{% static 'img/Icons/cabinetDeliveryIcon.png' %}" alt="user">
+                            <p>Доставки</p>
+                        </div>
+                        <div class="bot">
+                            <p>У вас нет <span class="delivery-counter">активных</span> доставок</p>
+                        </div>
+                    </div>
+                    <div class="card sales-info">
+                        <div class="top">
+                            <img src="{% static 'img/Icons/CabinetSalesIcon.png' %}" alt="user">
+                            <p>Скидки</p>
+                        </div>
+                        <div class="bot">
+                            <div class="sale-counter">
+                                <p>Персональная скидка —</p>
+                                <div class="sale">
+                                    <p class="sale-number s1">27%</p>
+                                    <p class="sale-number s2">27%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-cards">
+                    <div class="bank-cards">
+                        <p>Мои карты</p>
+                        <p>*4553 VISA</p>
+                        <p>Добавить карту</p>
+                    </div>
+                    <div class="orders">
+                        <p>Покупки</p>
+                        <p>У вас <span class="orders-counter">4</span> покупки</p>
+                    </div>
+                    <div class="favourite">
+                        <p>Избранное</p>
+                        <p><span class="favourite-counter">15</span> товаров</p>
+                    </div>
+                    <div class="notifications">
+                        <p>Уведомления</p>
+                        <div class="notifications-block">
+                            <img src="{% static 'img/Icons/Bell.png' %}" alt="bell">
+                            <p><span class="notifications-counter">2</span> новых</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="thanks">
+                    <img src="{% static 'img/cabinet-logo.png' %}" alt="cabinet-logo">
+                    <p>Спасибо, что выбираете нас!</p>
+                </div>
+            </div>
+        </div>
+        {%endblock%}
+
+        {% block js %}
+    <script src="{% static 'js/burger.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.js' %}"></script>
+    {% endblock %}

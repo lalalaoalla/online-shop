@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/registration/registration.css' %}">
+{% endblock %}
+
+{% block title%}
+<title> Tencho - Registartion</title>
+{% endblock %}
+
+{% block content %}
+        <div class="registration-form">
+            <div class="registration-title">
+                <p>Регистрация</p>
+            </div>
+            <div class="reg-form">
+                <label for="login">Логин:</label>
+                <input type="text" placeholder="Введите логин" name="login" id="login">
+                <label for="mail">Почта:</label>
+                <input type="email" name="mail" placeholder="Введите почту" id="mail">
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" placeholder="Введите пароль" id="password">
+                <div class="btn">
+                    <a href="{% url 'users:login'%}">Зарегистрироваться</a>
+                </div>
+                <div class="underline"></div>
+                <div class="login-via">
+                    <div class="via-google">
+                        <p>Используя</p>
+                        <img src="{% static 'img/Icons/google.png' %}" alt="google icon">
+                    </div>
+                    <div class="via-facebook">
+                        <p>Используя</p>
+                        <img src="{% static 'img/Icons/facebook.png' %}" alt="facebook icon">
+                    </div>
+                </div>
+                <div class="redirect">
+                    <a href="{% url 'users:login'%}">Уже есть аккаунт? Войдите!</a>
+                </div>
+            </div>
+        </div>
+        {% endblock%}
+        {% block js%}
+    <script src="{% static 'js/burger.js'%}"></script>
+    <script src="{% static 'js/smooth-scroll.js'%}"></script>
+    {% endblock%}
