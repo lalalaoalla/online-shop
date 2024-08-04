@@ -6,10 +6,14 @@ $('document').ready(function(){// обе функции выполняются �
 });
 
 function loadpr() {
-  $.getJSON('/jsons/products.json', function (data) {
+  $.ajax({
+    url: 'api/v1/productlist_index/',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
         let out = ''
         for (let key in data){
-          if (key < 13) {// выводит первые 12 товаров просто(по крайней мере в данный момент)
+          if (key < 12) {// выводит первые 12 товаров просто(по крайней мере в данный момент)
             out+='<div class="item">'
             out+='<div class="item-content">'
             out+='<span class="detailed" onclick="modalWindow(this)" data-name="'+data[key].name+'" data-cost="'+data[key].cost+'"  data-img="'+data[key].image+'" data-desc="'+data[key].description+'" data-category="'+data[key].category+'">Подробнее</span>'
@@ -23,14 +27,18 @@ function loadpr() {
           }
       }
     $('.items').html(out)
-  })
+    }
+  });
 }
 
 function loadnew() {
-  $.getJSON('/jsons/products.json', function (data) {
+  $.ajax({
+    url: 'api/v1/productlist_index_new/',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
         let out = ''
         for (let key in data){
-          if (key > 7 && key < 20) {// странное условие, но ладно выводит слайдер всего 6 штук
             out+='<div class="slider-item">'
             out+='<div class="slider-item-content">'
             out+='<span class="detailed" onclick="modalWindow(this)" data-name="'+data[key].name+'" data-cost="'+data[key].cost+'"  data-img="'+data[key].image+'" data-desc="'+data[key].description+'" data-category="'+data[key].category+'">Подробнее</span>'
@@ -42,10 +50,10 @@ function loadnew() {
             out+='</div>'
             out+='</div>'
             out+='</div>'
-          }
       }
     $('.slider-track').html(out)
-  })
+    }
+  });
 }
 
 //атрибуты с onclick это вункции, которые вызываются при данном событии
