@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from products.views import index, about
+from products.views import index, about, ProductsAPIViews, ProductsAPIViewsNews
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,7 +29,9 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('users/',include('users.urls', namespace='users')),
     path('orders/', include('orders.urls', namespace='orders')),
-
+    path('api/v1/productlist_index/', ProductsAPIViews.as_view()),
+    path('api/v1/productlist_index_new/', ProductsAPIViewsNews.as_view())
+    
 ] \
 +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

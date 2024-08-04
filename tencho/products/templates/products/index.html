@@ -20,7 +20,7 @@
         <div class="main-banner" style="background-image: url({% static 'img/banner1.png' %});">
             <div class="offer">
                 <p>Фирменные палочки в подарок к каждому заказу!</p>
-                <a href="catalogue.html">Заказать</a>
+                <a href="{% url 'catalogue:catalogue'%}">Заказать</a>
             </div>
         </div>
         <div class="adventages">
@@ -48,7 +48,7 @@
                 <!--Тут используется  createcards.js первая функция-->
             </div>
         </div>
-        <a href="catalogue.html" class="second-banner-link">
+        <a href="{% url 'catalogue:catalogue' %}" class="second-banner-link">
             <div class="second-banner" style = "background-image: url({% static 'img/banner2.png' %});">
                 <div class="text">
                     <p>1+1 = 3</p>
