@@ -1,5 +1,9 @@
 function reloadfilter(e) {//e- когда мы тыкаем на кнопочку категории товара
-  $.getJSON('/jsons/products.json', function (data) {
+  $.ajax({
+    url: 'api/v1/productlist_in_catalogue/',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
     let out = ''
     $('.catalogue-items-list').innerHTML = ''
     for (let key in data) {
@@ -11,12 +15,13 @@ function reloadfilter(e) {//e- когда мы тыкаем на кнопочк�
         out += '<div class="underline"></div>'
         out += '<p class="item-title">' + data[key].name + '</p>'
         out += '<p class="price">Цена: ' + data[key].cost + '₽</p>'
-        out += '<a href="product.html" onclick="buy(this)" data-name="' + data[key].name + '" data-cost="' + data[key].cost + '"  data-img="' + data[key].image + '" data-desc="' + data[key].description + '" data-category="' + data[key].category + '">Купить</a>'
+        out += '<a href="/product_detail/'+data[key].id+'" onclick="buy(this)" data-name="' + data[key].name + '" data-cost="' + data[key].cost + '"  data-img="' + data[key].image + '" data-desc="' + data[key].description + '" data-category="' + data[key].category + '">Купить</a>'
         out += '</div>'
         out += '</div>'
       }
     }
     $('.catalogue-items-list').html(out)// типа обновляем потом
+  }
   })
 }
 
@@ -26,7 +31,11 @@ document.querySelector(".clear").addEventListener("click", () => {// для кн
     elem.classList.remove("clicked")//и удаляем тыкания на них?
   })
 
-  $.getJSON('/jsons/products.json', function (data) {
+  $.ajax({
+    url: 'api/v1/productlist_in_catalogue/',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
     let out = ''
     $('.catalogue-items-list').innerHTML = ''
     for (let key in data) {
@@ -37,11 +46,12 @@ document.querySelector(".clear").addEventListener("click", () => {// для кн
       out += '<div class="underline"></div>'
       out += '<p class="item-title">' + data[key].name + '</p>'
       out += '<p class="price">Цена: ' + data[key].cost + '₽</p>'
-      out += '<a href="product.html" onclick="buy(this)" data-name="' + data[key].name + '" data-cost="' + data[key].cost + '"  data-img="' + data[key].image + '" data-desc="' + data[key].description + '" data-category="' + data[key].category + '">Купить</a>'
+      out += '<a href="/product_detail/'+data[key].id+'" onclick="buy(this)" data-name="' + data[key].name + '" data-cost="' + data[key].cost + '"  data-img="' + data[key].image + '" data-desc="' + data[key].description + '" data-category="' + data[key].category + '">Купить</a>'
       out += '</div>'
       out += '</div>'
     }
     $('.catalogue-items-list').html(out)
+  }
   })
 })
 
