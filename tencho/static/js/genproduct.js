@@ -23,6 +23,7 @@ function loadsame() {
         out += '<img src="' + data[key].image + '" alt="' + data[key].name + '">'
         out += '<div class="underline"></div>'
         out += '<p class="item-title">' + data[key].name + '</p>'
+        out+='<a href="/product_detail/'+data[key].id+'" onclick="buy(this)" data-name="'+data[key].name+'" data-cost="'+data[key].cost+'"  data-img="'+data[key].image+'" data-desc="'+data[key].description+'" data-category="'+data[key].category+'">Купить</a>'
         out += '</div>'
         out += '</div>'
         counter++
