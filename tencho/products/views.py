@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from rest_framework import generics
 from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -16,8 +16,17 @@ def catalogue(request):
 def about(request):
     return render(request,'about.html')
 
+def product_detail(request, id):
+    return render(request, 'products/product.html')
+
 class ProductsAPIViews(APIView):# в общем это то, что мы получаем
     def get(self, request):
+        all_products = Product.objects.all()
+        serialized_products = ProductSerializer(all_products, many=True)
+        return Response(serialized_products.data)
+    
+class ProductsAPIViewsInOneCategory(APIView):# в общем это то, что мы получаем
+    def get(self, request, id):
         all_products = Product.objects.all()
         serialized_products = ProductSerializer(all_products, many=True)
         return Response(serialized_products.data)
