@@ -7,11 +7,15 @@ window.onload = () => {//вызываем после загрузки стран
 }
 
 function loadsame() {
-  $.getJSON('/jsons/products.json', function (data) {
+  $.ajax({
+    url:'api/v1/productlist_in_one_category/',
+    type: 'GET', 
+    dataType: 'json', 
+    success: function (data) {
     let out = ''//сюда собирается html код
     let counter = 1
     for (let key in data) {
-      if (data[key].category == localStorage.getItem("category") && counter < 4) {// проверяем совпадает ли 
+      if (data[key].category == localStorage.getItem("category") && counter < 4 && data[key].name != localStorage.getItem("name")) {// проверяем совпадает ли 
         //категория нашего товара с товаром из данных и выводим первые 3
         out += '<div class="item">'
         out += '<div class="item-content">'
@@ -25,7 +29,8 @@ function loadsame() {
       }
     }
     $('.new-items').html(out)
-  })
+  }
+  });
 }
 
 //разобраться кто же у нас localStorage
