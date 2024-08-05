@@ -180,7 +180,7 @@
 
 .same {
     width: 1170px;
-    height: 407px;
+    height: 500px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px -2px 2px #00000014, 0px 2px 20px 5px #00000014;
@@ -189,7 +189,7 @@
 
 .same > .new-items > .item {
     width: 245px;
-    height: 304px;
+    height: 350px;
 }
 
 .product-price + p.SizeError {
