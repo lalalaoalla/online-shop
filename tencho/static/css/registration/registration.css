@@ -79,6 +79,31 @@ input::placeholder {
     cursor: pointer;
 }
 
+input[type="submit"].btn{
+    text-decoration: none;
+    width: 352px;
+    height: 52px;
+    border-radius: 5px;
+    background-color: #5F9D9F;
+    color: white;
+    font-family: Montserrat300;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    transition: .3s;
+    box-shadow: 0px -2px 2px #00000014, 0px 2px 20px 5px #00000014;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+input[type="submit"].btn:hover {
+    transition: .3s;
+    background-color: #87B6B7;
+}
+
+
 .btn > a:hover {
     transition: .3s;
     background-color: #87B6B7;
