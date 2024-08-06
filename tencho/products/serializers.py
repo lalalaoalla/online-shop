@@ -20,7 +20,7 @@ class ProductSerializer(serializers.Serializer):# это наш сериализ
     category=serializers.CharField(max_length = 128)
     description=serializers.CharField()
     image=serializers.SerializerMethodField()# не такое стандартное поле, для того, чтобы использовать функцию get_image
-    created=serializers.DateTimeField()
+    is_active=serializers.BooleanField()
 
     def get_image(self, obj):#возвращает вместе с папкой media(а то иначе не показывало)
         if obj.image:
