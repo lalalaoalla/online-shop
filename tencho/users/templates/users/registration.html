@@ -14,19 +14,21 @@
             <div class="registration-title">
                 <p>Регистрация</p>
             </div>
+        <form action="{% url 'users:registration'%}" method="post">
+            {% csrf_token %}
             <div class="reg-form">
-                <label for="login">Фамилия:</label>
-                <input type="text" placeholder="Введите фамилию" name="login" id="login">
-                <label for="login">Имя:</label>
-                <input type="text" placeholder="Введите имя" name="login" id="login">
-                <label for="login">Логин:</label>
-                <input type="text" placeholder="Введите логин" name="login" id="login">
-                <label for="mail">Почта:</label>
-                <input type="email" name="mail" placeholder="Введите почту" id="mail">
-                <label for="password">Пароль:</label>
-                <input type="password" name="password" placeholder="Введите пароль" id="password">
+                <label for="{{form.first_name.id_for_label}}">Фамилия:</label>
+                    {{form.first_name}}
+                <label for="{{form.last_name.id_for_label}}">Имя:</label>
+                    {{form.last_name}}
+                <label for="{{form.username.id_for_label}}">Имя пользователя:</label>
+                    {{form.username}}
+                <label for="{{form.email.id_for_label}}">Электронная почта:</label>
+                    {{form.email}}
+                <label for="{{form.password.id_for_label}}">Пароль:</label>
+                    {{form.password}}
                 <div class="btn">
-                    <a href="{% url 'users:login'%}">Зарегистрироваться</a>
+                    <input type="submit" class="btn a" value = "Зарегистрироваться">
                 </div>
                 <div class="underline"></div>
                 <div class="login-via">
@@ -43,6 +45,7 @@
                     <a href="{% url 'users:login'%}">Уже есть аккаунт? Войдите!</a>
                 </div>
             </div>
+        </form>
         </div>
         {% endblock%}
         {% block js%}
