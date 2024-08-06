@@ -1,12 +1,14 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import User
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserRegistrationForm
 from django.contrib import auth
 from django.urls import reverse
 # Create your views here.
 
 def cabinet(request):
     return render(request,'users/cabinet.html')
+
+
 
 def login(request):
     if request.method == 'POST':
@@ -27,5 +29,19 @@ def login(request):
     context = { 'form' : form}
     return render(request,'users/login.html', context)
 
+
+
+
 def registration(request):
-    return render(request, 'users/registration.html')
+    if request.method == 'POST':
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:login'))
+        else:
+            print('Данные не валидны')
+    else:
+        form = UserRegistrationForm()
+    
+    context = {'form': form}
+    return render(request, 'users/registration.html', context)
