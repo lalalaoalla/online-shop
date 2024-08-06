@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     image = models.ImageField(upload_to='users_avatar/', null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name='Пользователь'
