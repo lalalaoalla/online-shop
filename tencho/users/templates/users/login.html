@@ -13,14 +13,17 @@
             <div class="login-title">
                 <p>Авторизация</p>
             </div>
-            <div class="form">
-                <label for="login">Логин:</label>
-                <input type="text" placeholder="Введите логин" name="login" id="login">
-                <label for="password">Пароль:</label>
-                <input type="password" name="password" placeholder="Введите пароль" id="password">
+            <form action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                <div class="form">
+                    <label for="{{form.username.id_for_label}}">Имя пользователя:</label>
+                        {{form.username}}
+                    <label for="form.password.id_for_label">Пароль:</label>
+                        {{form.password}}
                 <div class="btn">
-                    <a href="#">Войти</a>
+                    <input type="submit" class="btn a" value = "Войти"> 
                 </div>
+            
                 <div class="underline"></div>
                 <div class="login-via">
                     <div class="via-google">
@@ -34,6 +37,7 @@
                 </div>
                 <a href="{% url 'users:registration'%}">Ещё нет аккаунта? Зарегистрируйтесь!</a>
             </div>
+        </form>
         </div>
 
         {% endblock %}
