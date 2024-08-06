@@ -16,6 +16,7 @@ Including another URLconf
 """
 #from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 
 from . import views
 
@@ -23,6 +24,9 @@ app_name = 'users'
 
 urlpatterns = [
     path('cabinet/',views.cabinet, name='cabinet'),
+    path('cabinet_no_autorization/',views.cabinet_no_autorization, name='cabinet_no_autorization'),
+    path('cabinet/data/',views.data, name='data'),
     path('login/', views.login,name='login'),
     path('registation/', views.registration, name='registration'),
+    path('logout/', views.logout_view, name='logout'),
 ]
