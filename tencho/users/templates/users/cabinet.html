@@ -15,21 +15,25 @@
             </div>
             <div class="cards">
                 <div class="big-cards">
+                <a href="{% url 'users:data' %}" >
                     <div class="card user-info">
                         <div class="top">
-                            <img src="{% static 'img/Icons/user.png'%}" alt="user">
-                            <p>Тимур Лебедев</p>
+                            <img width="80" height="80"
+                            src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/Icons/user.png' %} {% endif %}" alt="user"
+                            class="img-thumbnail our_image_style">
+                            <p class="delivery-counter">{{user.first_name}} {{user.last_name}}</p>
                         </div>
                         <div class="bot data-bot">
                             <div class="data">
-                                <p>Телефон: +7 (962) 260 61 57</p>
-                                <p>Email: assi1122334455@gmail.com</p>
+                                <p>Логин: {{user.username}}</p>
+                                <p>Email: {{user.email}}</p>
                             </div>
-                            <div class="logout">
-                                <p>Выйти</p>
-                            </div>
+                            <a class="logout" href="{% url 'users:logout' %}">
+                                <p class="delivery-counter">Выйти</p>
+                            </a>
                         </div>
                     </div>
+                </a>
                     <div class="card delivery-info">
                         <div class="top">
                             <img src="{% static 'img/Icons/cabinetDeliveryIcon.png' %}" alt="user">
@@ -88,4 +92,6 @@
         {% block js %}
     <script src="{% static 'js/burger.js' %}"></script>
     <script src="{% static 'js/smooth-scroll.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
     {% endblock %}
