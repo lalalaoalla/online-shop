@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cabinet/no_autorization_cabinet.css' %}">
+
+{% endblock %}
+
+{% block title %}
+<title>Tencho - Cabinet</title>
+{% endblock %}
+
+{% block content %}
+        <div class="cabinet">
+            <div class="cabinet-title">
+                <p>Личный кабинет</p>
+            </div>
+            <div class="alert alert_our_color text-center" role="alert">
+                Упс! Вы не авторизованы, пожалуйста, <a href = "{% url 'users:login' %}" class="alert_a">авторизуйтесь</a>
+            </div>
+            <div class="cards">
+                <div class="thanks">
+                    <img src="{% static 'img/cabinet-logo.png' %}" alt="cabinet-logo">
+                    <p>Спасибо, что выбираете нас!</p>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+       {% block js %}
+       <script src="/js/burger.js"></script>
+    <script src="/js/smooth-scroll.js"></script>
+    {%endblock%}
