@@ -17,7 +17,8 @@
         <form action="{% url 'users:registration'%}" method="post">
             {% csrf_token %}
             <div class="reg-form">
-                <label for="{{form.first_name.id_for_label}}">Фамилия:</label>
+                {{form.as_p}}
+                <!--<label for="{{form.first_name.id_for_label}}">Фамилия:</label>
                     {{form.first_name}}
                 <label for="{{form.last_name.id_for_label}}">Имя:</label>
                     {{form.last_name}}
@@ -26,21 +27,11 @@
                 <label for="{{form.email.id_for_label}}">Электронная почта:</label>
                     {{form.email}}
                 <label for="{{form.password.id_for_label}}">Пароль:</label>
-                    {{form.password}}
+                    {{form.password}}-->
                 <div class="btn">
                     <input type="submit" class="btn a" value = "Зарегистрироваться">
                 </div>
-                <div class="underline"></div>
-                <div class="login-via">
-                    <div class="via-google">
-                        <p>Используя</p>
-                        <img src="{% static 'img/Icons/google.png' %}" alt="google icon">
-                    </div>
-                    <div class="via-facebook">
-                        <p>Используя</p>
-                        <img src="{% static 'img/Icons/facebook.png' %}" alt="facebook icon">
-                    </div>
-                </div>
+                
                 <div class="redirect">
                     <a href="{% url 'users:login'%}">Уже есть аккаунт? Войдите!</a>
                 </div>
