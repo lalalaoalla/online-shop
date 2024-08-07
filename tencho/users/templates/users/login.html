@@ -3,6 +3,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 {% block title%}
 <title> Tencho - LogIn</title>
@@ -13,6 +14,23 @@
             <div class="login-title">
                 <p>Авторизация</p>
             </div>
+            {% if messages or form.non_field_errors %}
+                        <div class="alert
+                        {% if messages %} alert-success {% else %} alert_our_color{% endif %}
+                         alert-dismissible fade show" role="alert">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% else %}
+                                {{ form.non_field_errors }}
+                            {% endif %}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endif %}
+
             <form action="{% url 'users:login' %}" method="post">
                 {% csrf_token %}
                 <div class="form">
@@ -20,21 +38,11 @@
                         {{form.username}}
                     <label for="form.password.id_for_label">Пароль:</label>
                         {{form.password}}
-                <div class="btn">
+                <div class="my_btn">
                     <input type="submit" class="btn a" value = "Войти"> 
                 </div>
             
                 <div class="underline"></div>
-                <div class="login-via">
-                    <div class="via-google">
-                        <p>Используя</p>
-                        <img src="{% static 'img/Icons/google.png' %}" alt="google icon">
-                    </div>
-                    <div class="via-facebook">
-                        <p>Используя</p>
-                        <img src="{% static 'img/Icons/facebook.png' %}" alt="facebook icon">
-                    </div>
-                </div>
                 <a href="{% url 'users:registration'%}">Ещё нет аккаунта? Зарегистрируйтесь!</a>
             </div>
         </form>

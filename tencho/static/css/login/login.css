@@ -26,6 +26,12 @@
     width: 325px;
 }
 
+.alert_our_color{
+    color: black;
+    background-color: #d2eeef;
+    font-family: Montserrat;
+}
+
 label {
     font-family: Montserrat;
     font-size: 16px;
@@ -81,7 +87,7 @@ input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="p
 
 input[type="submit"].btn{
     text-decoration: none;
-    width: 352px;
+    width: 325px;
     height: 52px;
     border-radius: 5px;
     background-color: #5F9D9F;
@@ -101,6 +107,11 @@ input[type="submit"].btn{
 input[type="submit"].btn:hover {
     transition: .3s;
     background-color: #87B6B7;
+}
+
+.my_btn{
+    width: 325px;
+    height: 55px;
 }
 
 .btn > a:hover {
