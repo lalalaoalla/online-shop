@@ -17,7 +17,7 @@
         <form action="{% url 'users:registration'%}" method="post">
             {% csrf_token %}
             <div class="reg-form">
-                {{form.as_p}}
+                {{form.as_div}}
                 <!--<label for="{{form.first_name.id_for_label}}">Фамилия:</label>
                     {{form.first_name}}
                 <label for="{{form.last_name.id_for_label}}">Имя:</label>
