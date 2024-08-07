@@ -64,6 +64,7 @@ img {
 
 a {
     user-select: none;
+    text-decoration: none;
 }
 
 .back-btn {
