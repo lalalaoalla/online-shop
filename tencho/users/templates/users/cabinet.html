@@ -34,23 +34,27 @@
                         </div>
                     </div>
                 </a>
+                
                     <div class="card delivery-info">
+                        <a href="{% url 'users:delivery' %}">
                         <div class="top">
                             <img src="{% static 'img/Icons/cabinetDeliveryIcon.png' %}" alt="user">
-                            <p>Доставки</p>
+                            <p class="delivery-counter">Доставки</p>
                         </div>
                         <div class="bot">
-                            <p>У вас нет <span class="delivery-counter">активных</span> доставок</p>
+                            <p class="delivery-counter">У вас <span class="hover_marks">нет</span> активных доставок</p>
                         </div>
+                    </a>
                     </div>
+                
                     <div class="card sales-info">
                         <div class="top">
                             <img src="{% static 'img/Icons/CabinetSalesIcon.png' %}" alt="user">
-                            <p>Скидки</p>
+                            <p style="color: #5F9D9F;">Скидки</p>
                         </div>
                         <div class="bot">
                             <div class="sale-counter">
-                                <p>Персональная скидка —</p>
+                                <p style = "color: #5F9D9F;">Персональная скидка —</p>
                                 <div class="sale">
                                     <p class="sale-number s1">27%</p>
                                     <p class="sale-number s2">27%</p>
@@ -60,26 +64,35 @@
                     </div>
                 </div>
                 <div class="small-cards">
-                    <div class="bank-cards">
-                        <p>Мои карты</p>
-                        <p>*4553 VISA</p>
-                        <p>Добавить карту</p>
-                    </div>
+                    <a href="{% url 'users:users_cards' %}">
                     <div class="orders">
-                        <p>Покупки</p>
-                        <p>У вас <span class="orders-counter">4</span> покупки</p>
+                        <p class="delivery-counter">Мои карты</p>
+                        <p>*4553 VISA</p>
                     </div>
+                </a>
+                <a href="{% url 'users:purchases' %}">
+                    <div class="orders">
+                        
+                        <p class="delivery-counter">Покупки</p>
+                        <p class="delivery-counter">У вас <span class="hover_marks">4</span> покупки</p>
+                        
+                    </div>
+                </a>
+                <a href="{% url 'users:favorite' %}">
                     <div class="favourite">
-                        <p>Избранное</p>
-                        <p><span class="favourite-counter">15</span> товаров</p>
+                        <p class="delivery-counter">Избранное</p>
+                        <p><span class="hover_marks">15</span> товаров</p>
                     </div>
+                </a>
+                <a href="{% url 'users:notify' %}">
                     <div class="notifications">
-                        <p>Уведомления</p>
+                        <p class="delivery-counter">Уведомления</p>
                         <div class="notifications-block">
                             <img src="{% static 'img/Icons/Bell.png' %}" alt="bell">
-                            <p><span class="notifications-counter">2</span> новых</p>
+                            <p style="color: bfbfbf;"><span class="hover_marks">2</span> новых</p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="thanks">
                     <img src="{% static 'img/cabinet-logo.png' %}" alt="cabinet-logo">

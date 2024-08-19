@@ -24,9 +24,23 @@ def data(request):
     else:
         form = UserProfileForm(instance = request.user)
     context = {'form': form}
-    return render(request, 'users/data.html', context)
+    return render(request, 'users/tabs_cabinet/data.html', context)
 
+def delivery(request):
+    return render(request,'users/tabs_cabinet/delivery.html')
 
+def users_cards(request):
+    return render(request,'users/tabs_cabinet/users_cards.html')
+
+def purchases(request):
+    '''Покупки'''
+    return render(request,'users/tabs_cabinet/purchases.html')
+
+def favorite(request):
+    return render(request, 'users/tabs_cabinet/favorite.html')
+
+def notify(request):
+    return render(request,'users/tabs_cabinet/notify.html')
 
 def login(request):
     if request.method == 'POST':
