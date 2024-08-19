@@ -11,4 +11,18 @@ class User(AbstractUser):
         verbose_name='Пользователь'
         verbose_name_plural = 'Пользователи'
 
+class Cards(models.Model):
+    user = models.ForeignKey(
+        User, verbose_name="Пользователь", on_delete=models.CASCADE)
+    card_number_hash = models.CharField(max_length=255, unique=True)  # Хеш номера карты
+    expiry_date = models.DateField()
+    card_type = models.CharField(max_length=20, choices=(
+        ('visa', 'Visa'),
+        ('mastercard', 'Mastercard'),
+        ('amex', 'American Express'),
+    ))
+    class Meta:
+        verbose_name = 'Карта для оплаты'
+        verbose_name_plural = 'Карты для оплаты'
+
 

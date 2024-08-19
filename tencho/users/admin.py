@@ -11,3 +11,11 @@ class UserAdmin(admin.ModelAdmin):
         model = User
 
 admin.site.register(User,UserAdmin)
+
+class CardsAdmin(admin.ModelAdmin):
+    search_fields=['user']
+
+    class Meta:
+        model = Cards
+
+admin.site.register(Cards, CardsAdmin)
