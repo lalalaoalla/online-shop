@@ -119,6 +119,12 @@
     transform: scaleX(0);
 }
 
+.hover_marks{
+    color: black;
+    cursor: pointer;
+    position: relative;
+}
+
 .delivery-counter:hover::after, .orders-counter:hover::after, .favourite-counter:hover::after, .notifications-counter:hover::after {
     transition: .3s;
     transform: scaleX(1);
@@ -128,6 +134,7 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+    color: #5F9D9F;
 }
 
 .sales-info {
