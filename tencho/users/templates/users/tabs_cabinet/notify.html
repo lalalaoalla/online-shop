@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cabinet/no_autorization_cabinet.css' %}">
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}
+<title>Tencho - Notifications</title>
+{% endblock %}
+
+{% block content %}
+        <div class="cabinet">
+            <div class="cabinet-title">
+                <p>Личный кабинет</p>
+            </div>
+            
+        </div>
+        {% endblock %}
+       {% block js %}
+       <script src="/js/burger.js"></script>
+    <script src="/js/smooth-scroll.js"></script>
+    {%endblock%}
