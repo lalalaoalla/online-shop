@@ -1,4 +1,6 @@
 from django.db import models
+from users.models import User
+from products.models import Product, Size
 
 # Create your models here.
 
@@ -14,3 +16,27 @@ class Status(models.Model):
     class Meta:
         verbose_name='Статус заказа'
         verbose_name_plural = 'Статусы заказа'
+
+class Basket(models.Model):
+    product = models.ForeignKey(to=Product, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    price = models.DecimalField(default=0, decimal_places=2,max_digits=2)
+    size = models.ForeignKey(to=Size, on_delete=models.DO_NOTHING)
+    #order_number = models.CharField#надо исправить это пока просто текст чтобы не давало ошибку
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+
+    def __str__(self):
+        return f' Корзина {self.user.last_name} {self.user.first_name}'
+    class Meta:
+        verbose_name = 'Товар в корзине'
+        verbose_name_plural = 'Товары в корзине'
+
+# class Order(models.Model):
+#     '''Заказы'''
+#     status = models.ForeignKey(to=Status, on_delete=models.PROTECT)
+
+#     class Meta:
+#         verbose_name = 'Заказ'
+#         verbose_name_plural = 'Заказы'
