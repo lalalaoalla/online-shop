@@ -49,6 +49,18 @@
                     <p>Каталог</p>
                 </div>
                 <div class="catalogue-items-list">
+                    {% for product in all_products%}
+                    <div class="item">
+                        <div class="item-content">
+                        <span class="detailed" onclick="modalWindow(this)" data-name="{{product.name}}" data-cost="{{product.cost}}"  data-img="{{product.image}}" data-desc="{{product.description}}" data-category="{{product.category}}">Подробнее</span>
+                        <img src="{{product.image}}" alt="{{product.name}}">
+                        <div class="underline"></div>
+                        <p class="item-title">{{product.name}}</p>
+                        <p class="price">Цена: {{product.cost}}₽</p>
+                        <a href="/product_detail/{{product.id}}" onclick="addtocart()" data-product-id="{{product.id}}">Купить</a>
+                        </div>
+                        </div>
+                        {% endfor %}
                     <!--Здесь применяется cataloguegen.js-->
                     <!--внутри catalogue.js применяется функция zoom-->
                     <!--filter.js 1 функция-->
@@ -75,11 +87,9 @@
                     <p class="modal-price"></p>
                     <p>Размеры:</p>
                     <div class="sizes">
-                        <div>XS</div>
-                        <div>S</div>
-                        <div>M</div>
-                        <div>L</div>
-                        <div>XL</div>
+                        {% for size in sizes %}
+                        <div>{{size.name}}</div>
+                        {% endfor %}
                     </div>
                     <p class="modal-item-about"></p>
                 </div>

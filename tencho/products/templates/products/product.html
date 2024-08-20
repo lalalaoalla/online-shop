@@ -15,20 +15,26 @@
         <div class="product-form">
             <div class="product-top">
                 <!--Отсюда начинается genproduct.js-->
-                <img src="" class="product-img" alt="kabusecha">
+                <img src="{{product.image}}" class="product-img" alt="kabusecha">
                 <div class="info-block">
-                    <h1 class="product-title"></h1>
-                    <p class="product-price"></p>
+                    <h1 class="product-title">
+                        {{product.name}}
+                    </h1>
+                    <p class="product-price">
+                        {{product.cost}}
+                    </p>
                     <p>Размеры:</p>
                     <div class="sizes product-sizes">
-                        <div>XS</div>
-                        <div>S</div>
-                        <div>M</div>
-                        <div>L</div>
-                        <div>XL</div>
+                        {% for size in sizes %}
+                        <div>{{size.name}}</div>
+                        {% endfor %}
                     </div>
                     <div class="order-block">
-                        <a href="{% url 'orders:order'%}" onclick="addtocart(this)">В корзину</a>
+                        {% if user.is_authenticated%}
+                        <a href="#">В корзину</a>
+                        {% else%}
+                        <a href="{% url 'users:login'%}">В корзину</a>
+                        {% endif %}
                         <div class="number">
                             <!--Тут применяется itemscount.js-->
                             <button class="number-minus minus" type="button">-</button>
@@ -40,7 +46,7 @@
             </div>
             <div class="product-about">
                 <h1>Описание:</h1>
-                <p class="product-item-about"></p>
+                <p class="product-item-about">{{product.description}}</p>
             </div>
         </div>
         <div class="same">
@@ -168,11 +174,9 @@
                     <p class="modal-price"></p>
                     <p>Размеры:</p>
                     <div class="sizes">
-                        <div>XS</div>
-                        <div>S</div>
-                        <div>M</div>
-                        <div>L</div>
-                        <div>XL</div>
+                        {% for size in sizes %}
+                        <div>{{size.name}}</div>
+                        {% endfor %}
                     </div>
                     <p class="modal-item-about"></p>
                 </div>
@@ -187,6 +191,6 @@
     <script src="{% static 'js/zoom.js' %}"></script>
     <script src="{% static 'js/stars.js' %}"></script>
     <script src="{% static 'js/itemscount.js' %}"></script>
-    <script src="{% static 'js/genproduct.js' %}"></script>
+    <!--<script src="{% static 'js/genproduct.js' %}"></script>-->
     <script src="{% static 'js/cart.js' %}"></script>
     {% endblock%}

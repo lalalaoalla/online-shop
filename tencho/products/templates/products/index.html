@@ -43,11 +43,25 @@
         </div>
         <div class="popular">
             <div class="title">Популярные товары</div>
+            
             <div class="items">
+                {% for product in popular_products %}
+                <div class="item">
+                    <div class="item-content">
+                        <span class="detailed" onclick="modalWindow(this)" data-name="{{product.name}}" data-cost="{{product.cost}}"  data-img="{{product.image}}" data-desc="{{product.description}}" data-category="{{product.category}}">Подробнее</span>
+                        <img src="{{product.image}}" alt="{{product.name}}">
+                        <div class="underline"></div>
+                        <p class="item-title">{{product.name}}</p>
+                        <p class="price">Цена: {{product.cost}}₽</p>
+                        <a href="/product_detail/{{product.id}}" onclick="buy(this)" data-name="'+data[key].name+'" data-cost="'+data[key].cost+'"  data-img="'+data[key].image+'" data-desc="'+data[key].description+'" data-category="'+data[key].category+'">Купить</a>
+                    </div>
+                </div>
+                {% endfor %}  
                 <!--zoom.js применяется внутри createcards.js-->
-                <!--Тут используется  createcards.js первая функция-->
             </div>
+            
         </div>
+        
         <a href="{% url 'catalogue:catalogue' %}" class="second-banner-link">
             <div class="second-banner" style = "background-image: url({% static 'img/banner2.png' %});">
                 <div class="text">
@@ -63,13 +77,24 @@
                 <button class="slider-prev" style="background-image: url({% static 'img/arrow-left.png' %});"></button>
                 <div class="slider-container">
                     <div class="slider-track">
-                        <!--Тут используется вторая функция createcards.js-->
-                        <div class="slider-item"></div>
-                        <div class="slider-item"></div>
-                        <div class="slider-item"></div>
-                        <div class="slider-item"></div>
-                        <div class="slider-item"></div>
-                        <div class="slider-item"></div>
+                        {% for product in new_products %}
+                        <div class="slider-item">
+                            
+                            <div class="slider-item-content">
+                                
+                            <span class="detailed" onclick="modalWindow(this)" data-name="{{product.name}}" data-cost="{{product.cost}}"  data-img="{{product.image}}" data-desc="{{product.description}}" data-category="{{product.category}}">Подробнее</span>
+                            <img src="{{product.image}}" alt="{{product.name}}">
+                            <div class="slider-info">
+                            <h1 class="slider-item-title">{{product.name}}</h1>
+                            <p class="price">Цена: {{product.cost}} ₽</p>
+                            <a class="slider-buy-btn" href="/product_detail/{{product.id}}" onclick="buy(this)" data-name="{{product.name}}" data-cost="{{product.cost}}"  data-img="{{product.image}}" data-desc="{{product.description}}" data-category="{{product.category}}">Купить</a>
+                            </div>
+                            
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </div>
                 <button class="slider-next" style = "background-image: url({% static 'img/arrow-right.png' %});"></button>
@@ -96,11 +121,9 @@
                     <p class="modal-price"></p>
                     <p>Размеры:</p>
                     <div class="sizes">
-                        <div>XS</div>
-                        <div>S</div>
-                        <div>M</div>
-                        <div>L</div>
-                        <div>XL</div>
+                        {% for size in sizes %}
+                        <div>{{size.name}}</div>
+                        {% endfor %}
                     </div>
                     <p class="modal-item-about"></p>
                 </div>
