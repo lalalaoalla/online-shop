@@ -49,9 +49,13 @@ def about(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+    similars_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:4]  # Получите похожие товары
+
     context = {
         'sizes': Size.objects.all(),
-        'product': product
+        'product': product,
+        'similars_products': similars_products,
+        'counter': 0
     }
     return render(request, 'products/product.html', context)
 
