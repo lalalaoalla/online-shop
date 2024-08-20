@@ -20,12 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from products.views import index, about,product_detail, ProductsAPIViews, ProductsAPIViewsNews, ProductsAPIViewsInOneCategory
+from products.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',index, name='index'),
-    path('product_detail/<int:id>/', product_detail, name='product_detail'),
+    path('product_detail/<int:product_id>/', product_detail, name='product_detail'),
     path('catalogue/',include('products.urls', namespace='catalogue')),
     path('about/', about, name='about'),
     path('users/',include('users.urls', namespace='users')),
@@ -34,6 +34,7 @@ urlpatterns = [
     path('api/v1/productlist_index/', ProductsAPIViews.as_view()),
     path('api/v1/productlist_index_new/', ProductsAPIViewsNews.as_view()),
     path('product_detail/<int:id>/api/v1/productlist_in_one_category/', ProductsAPIViewsInOneCategory.as_view()),
+    path('api/v1/productlist_in_catalogue/', ProductsAPIViewsCataloque.as_view()),
     
 ] \
 +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \

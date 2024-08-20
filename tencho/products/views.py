@@ -1,27 +1,73 @@
 from rest_framework import generics
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, Size
+from orders.models import Basket
+from users.models import User
+from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+import requests
 
 # Create your views here.
-
+#отображение страниц
 def index(request):
-    return render(request,'products/index.html')
+    response = requests.get('http://127.0.0.1:8001/api/v1/productlist_index/')
+    if response.status_code == 200:  # Проверяем, был ли запрос успешным
+        popular_products = response.json()  # Получаем данные в формате JSON
+    else:
+        popular_products = []  # Возвращаем пустой список, если запрос не удался
+    
+    response = requests.get('http://127.0.0.1:8001/catalogue/api/v1/productlist_index_new/')
+    if response.status_code == 200:  # Проверяем, был ли запрос успешным
+        new_products = response.json()  # Получаем данные в формате JSON
+    else:
+        new_products = []  # Возвращаем пустой список, если запрос не удался
+    #popular_products = 'api/v1/productlist_index/'
+    context = {
+        'sizes': Size.objects.all(),
+        'popular_products':popular_products,
+        'new_products': new_products
+    }
+    return render(request,'products/index.html', context)
 
 def catalogue(request):
-    return render(request, 'products/catalogue.html')
+    response = requests.get('http://127.0.0.1:8001/api/v1/productlist_in_catalogue/')
+    if response.status_code == 200:  # Проверяем, был ли запрос успешным
+        all_products = response.json()  # Получаем данные в формате JSON
+    else:
+        all_products = []  # Возвращаем пустой список, если запрос не удался
+    
+    context = {
+        'sizes': Size.objects.all(),
+        'all_products': all_products
+    }
+    return render(request, 'products/catalogue.html', context)
+
 
 def about(request):
     return render(request,'about.html')
 
-def product_detail(request, id):
-    return render(request, 'products/product.html')
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        'sizes': Size.objects.all(),
+        'product': product
+    }
+    return render(request, 'products/product.html', context)
 
+#Обработчики событий
+# def basket_add(request, product_id):
+#     if not request.user.is_authenticated:
+#         # Сохранение URL в сессии
+#         request.session['next_url'] = request.META.get('HTTP_REFERER', '/') 
+
+#         return redirect('users:login')
+    
+
+#APIViews
 class ProductsAPIViews(APIView):# в общем это то, что мы получаем
     def get(self, request):
-        all_products = Product.objects.all()
+        all_products = Product.objects.order_by('created')[:12]
         serialized_products = ProductSerializer(all_products, many=True)
         return Response(serialized_products.data)
     
@@ -36,6 +82,14 @@ class ProductsAPIViewsNews(APIView):# в общем это то, что мы п�
         all_products = Product.objects.order_by('-created')[:6]
         serialized_products = ProductSerializer(all_products, many=True)
         return Response(serialized_products.data)
+    
+class ProductsAPIViewsCataloque(APIView):# в общем это то, что мы получаем
+    def get(self, request):
+        all_products = Product.objects.all()
+        serialized_products = ProductSerializer(all_products, many=True)
+        return Response(serialized_products.data)
+    
+
 
 # А МОЖНО И ВОТ ТАК
 

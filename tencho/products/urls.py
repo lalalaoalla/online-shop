@@ -18,14 +18,14 @@ Including another URLconf
 from django.urls import path
 
 from products import views
-from .views import ProductsAPIViews
+from .views import ProductsAPIViewsCataloque
 app_name = 'products'  
 
 urlpatterns = [
     path('',views.catalogue, name='catalogue'),
     #path('product_detail/<int:id>/', views.product_detail, name='product_detail'),
     #api
-    path('api/v1/productlist_in_catalogue/', ProductsAPIViews.as_view())#пока что наш путь для получения 
+    path('api/v1/productlist_in_catalogue/', ProductsAPIViewsCataloque.as_view())#пока что наш путь для получения 
     # главное чтобы в пути было api/ дальше версия api api/v1 ну и добавляем немного контекста api/v1/productlist
 
     #path('',views.about, name='about'),
