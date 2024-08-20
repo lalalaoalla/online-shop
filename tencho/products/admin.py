@@ -9,6 +9,12 @@ class CategoryProductAdmin(admin.ModelAdmin):
     class Meta:
         model= CategoryProducts
 
+class SizeAdmin(admin.ModelAdmin):
+    list_display=['name']
+
+    class Meta:
+        model= Size
+
 class ProductAdmin(admin.ModelAdmin):
     list_display=['name','cost', 'category']
     list_filter=['category',]
@@ -18,4 +24,6 @@ class ProductAdmin(admin.ModelAdmin):
         model=Product
 
 admin.site.register(CategoryProducts,CategoryProductAdmin)
+admin.site.register(Size,SizeAdmin)
 admin.site.register(Product,ProductAdmin)
+
