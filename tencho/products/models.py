@@ -12,6 +12,16 @@ class CategoryProducts(models.Model):
     def __str__(self):
         return self.name
     
+class Size(models.Model):
+    name=models.CharField(max_length=12)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Размер'
+        verbose_name_plural = 'Размеры'
+    
 class Product(models.Model):
     #ВНИМАНИЕ on_delete указывает, что произойдет, если поле КАТЕГОРИЯ будет удалено
     name=models.CharField(max_length=128)
@@ -28,5 +38,5 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
     
     def __str__(self):
-        return '%s %s %s' % (self.category, self.name, self.cost)
+        return '%s %s' % (self.category, self.name)
 
