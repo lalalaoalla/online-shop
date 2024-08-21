@@ -21,7 +21,7 @@ class Basket(models.Model):
     product = models.ForeignKey(to=Product, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
-    price = models.DecimalField(default=0, decimal_places=2,max_digits=2)
+    price = models.IntegerField()
     size = models.CharField(default="XS", max_length=4)
     #order_number = modelsField#надо исправить это пока просто текст чтобы не давало ошибку
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
