@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/product/feedback.css' %}">
 <link rel="stylesheet" href="{% static 'css/index/new.css' %}">
 <link rel="stylesheet" href="{% static 'css/index/popular.css' %}">
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 {% block title %}
 <title>Tencho</title>
@@ -15,7 +16,7 @@
         <div class="product-form">
             <div class="product-top">
                 <!--Отсюда начинается genproduct.js-->
-                <img src="{{product.image}}" class="product-img" alt="kabusecha">
+                <img src="{{product.get_image_url}}" class="product-img" alt="{{product.name}}">
                 <div class="info-block">
                     <h1 class="product-title">
                         {{product.name}}
@@ -23,24 +24,46 @@
                     <p class="product-price">
                         {{product.cost}}
                     </p>
-                    <p>Размеры:</p>
+                    <p>Доступные размеры:</p>
                     <div class="sizes product-sizes">
                         {% for size in sizes %}
-                        <div>{{size.name}}</div>
+                            <div class="size-option" data-size="{{ size.id }}">{{ size.name }}</div>
                         {% endfor %}
                     </div>
                     <div class="order-block">
-                        {% if user.is_authenticated%}
-                        <a href="#">В корзину</a>
-                        {% else%}
-                        <a href="{% url 'users:login'%}">В корзину</a>
-                        {% endif %}
-                        <div class="number">
-                            <!--Тут применяется itemscount.js-->
-                            <button class="number-minus minus" type="button">-</button>
-                            <p class="counter-value">1</p>
-                            <button class="number-plus plus" type="button">+</button>
-                        </div>
+                        <form id="form_buying_product" class="">
+                            <div class="number">
+                                <div class="form-group">
+                                <!--Тут применяется itemscount.js-->
+                                <!--<button class="number-minus minus" type="button">-</button>-->
+                                <input type="number" class="form-control" name="number" id="number" placeholder="Количество">
+                                <!--<button class="number-plus plus" type="button">+</button>-->
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <!--Тут применяется itemscount.js-->
+                                <!--<button class="number-minus minus" type="button">-</button>-->
+                                <input type="text" class="form-control" name="size" id="size" placeholder="Размер">
+                                <!--<button class="number-plus plus" type="button">+</button>-->
+                                </div>
+                            
+                            
+                            {% if user.is_authenticated%}
+                            <div class="form-group">
+                            <button class="order-block-button btn-buy"
+                            type="submit" id="submit_btn"
+                                    data-product_id = "{{ product.id }}"
+                                    data-name ="{{ product.name }}"
+                                    data-cost ="{{ product.cost }}"
+                                    data-category = "{{product.category}}"
+                            > В корзину</button>
+                            </div>
+                            <!--<a href="{% url 'orders:basket_add' product.id%}">В корзину</a>-->
+                            {% else%}
+                            <a href="{% url 'users:login'%}">В корзину</a>
+                            {% endif %}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,7 +80,7 @@
                 <div class="item">
                     <div class="item-content">
                     <span class="detailed" onclick="modalWindow(this)" data-name="{{another_product.name}}" data-cost="{{another_product.cost}}"  data-img="{{another_product.image}}" data-desc="{{another_product.description}}" data-category="{{another_product.category}}">Подробнее</span>
-                    <img src="{{another_product.image}}" alt="{{another_product.name}}">
+                    <img src="{{another_product.get_image_url}}" alt="{{another_product.name}}">
                     <div class="underline"></div>
                     <p class="item-title">{{another_product.name}}</p>
                     <a href="/product_detail/{{another_product.id}}" onclick="buy(this)" data-name="{{another_product.name}}" data-cost="{{another_product.cost}}"  data-img="{{another_product.image}}" data-desc="{{another_product.description}}" data-category="{{another_product.category}}">Купить</a>
@@ -202,6 +225,7 @@
 {% block js%}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'js/burger.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
     <script src="{% static 'js/smooth-scroll.js' %}"></script>
     <script src="{% static 'js/zoom.js' %}"></script>
     <script src="{% static 'js/stars.js' %}"></script>
