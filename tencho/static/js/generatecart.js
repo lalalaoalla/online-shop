@@ -14,7 +14,7 @@ let arr = JSON.parse(localStorage.getItem("cart-items"))//массив това�
 
 function generateCartItems(mas) {
     let out = ''
-    mas.forEach((elem, i) => {
+    mas.forEach((elem, i) => {//i в нашем случае - номер элемента в корзине
         categoryChecker(elem.category)//передает этой функции значение товара
         sizeMultiplier(elem.size,elem.price)//передаем выбранный размер и начальную цену
         out += '<div class="order-item">'
@@ -60,8 +60,8 @@ function generateCartItems(mas) {
         div.setAttribute("class","empty")
     } else {
         div.innerHTML = out
-        document.querySelector(".cart-list").append(div)
-        div.setAttribute("class", "cart-list-inside")
+        document.querySelector(".cart-list").append(div)//если товары в корзине есть, то начинаем отсюда смотреть
+        div.setAttribute("class", "cart-list-inside")//создаем атрибут cart-list-inside и поехали outы
     }
     //наши кнопочки для увеличения\уменьшения количества элементов в заказе
     let plus = document.querySelectorAll(".plus")

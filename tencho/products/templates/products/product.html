@@ -31,7 +31,8 @@
                         {% endfor %}
                     </div>
                     <div class="order-block">
-                        <form id="form_buying_product" class="">
+                        <form id="form_buying_product" class="" action="{% url 'orders:basket_add'%}">
+                            {% csrf_token %}
                             <div class="number">
                                 <div class="form-group">
                                 <!--Тут применяется itemscount.js-->
@@ -59,7 +60,6 @@
                                     data-category = "{{product.category}}"
                             > В корзину</button>
                             </div>
-                            <!--<a href="{% url 'orders:basket_add' product.id%}">В корзину</a>-->
                             {% else%}
                             <a href="{% url 'users:login'%}">В корзину</a>
                             {% endif %}
