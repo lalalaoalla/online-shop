@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from .models import User
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from django.contrib import auth, messages
@@ -52,9 +52,13 @@ def login(request):
             #начинаем аутентификацию
             user = auth.authenticate(username=username, password=password)
             if user:
-                # здесь мы проверяем ну то есть если такой пользователь нашелся то происходит авторизация
+                # Получаем URL из сессии
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                
+                return HttpResponseRedirect(reverse('users:cabinet'))
+
+                # здесь мы проверяем ну то есть если такой пользователь нашелся то происходит авторизация
+                
         else:
             print(form.errors)
     else:
