@@ -17,7 +17,7 @@ def index(request):
     else:
         popular_products = []  # Возвращаем пустой список, если запрос не удался
     
-    response = requests.get('http://127.0.0.1:8001/catalogue/api/v1/productlist_index_new/')
+    response = requests.get('http://127.0.0.1:8001/api/v1/productlist_index_new/')
     if response.status_code == 200:  # Проверяем, был ли запрос успешным
         new_products = response.json()  # Получаем данные в формате JSON
     else:
@@ -49,7 +49,7 @@ def about(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    similars_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:4]  # Получите похожие товары
+    similars_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:4]  # похожие товары
 
     context = {
         'sizes': Size.objects.all(),
@@ -93,6 +93,7 @@ class ProductsAPIViewsCataloque(APIView):# в общем это то, что м�
         serialized_products = ProductSerializer(all_products, many=True)
         return Response(serialized_products.data)
     
+
 
 
 # А МОЖНО И ВОТ ТАК

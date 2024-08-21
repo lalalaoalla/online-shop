@@ -27,8 +27,6 @@ class ProductSerializer(serializers.Serializer):# это наш сериализ
             return obj.image.url
         return None
 
-   
-
 # Здесь должны быть дальше функции с кодированием и декодировании
 
 # #МОЖНО ТАК
