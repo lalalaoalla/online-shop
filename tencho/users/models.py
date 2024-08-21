@@ -19,7 +19,7 @@ class Cards(models.Model):
     card_type = models.CharField(max_length=20, choices=(
         ('visa', 'Visa'),
         ('mastercard', 'Mastercard'),
-        ('amex', 'American Express'),
+        ('mir', 'МИР'),
     ))
     class Meta:
         verbose_name = 'Карта для оплаты'
