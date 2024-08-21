@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 # Create your models here.
 
@@ -32,6 +34,12 @@ class Product(models.Model):
     is_active=models.BooleanField(default=True)
     created=models.DateTimeField(auto_now_add=True, auto_now=False)
     updated=models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def get_image_url(self):
+           """Возвращает полный URL изображения с учетом MEDIA_URL."""
+           if self.image:
+               return f"{settings.MEDIA_URL}{self.image.name}"
+           return None
 
     class Meta:
         verbose_name = 'Товар'
