@@ -12,7 +12,7 @@ from django.http import JsonResponse
 
 def cart(request):
     context = {
-        'baskets': Basket.objects.filter(user=request.user)
+        'baskets': Basket.objects.filter(user=request.user, is_active=True)
     }
     return render(request, 'orders/cart.html', context)
 
@@ -22,10 +22,10 @@ def basket_add(request):
     print (request.POST)
     data = request.POST
     product_id = data.get("product_id")
-    quantity = data.get("quantity")
+    quantity = int(data.get("quantity"))
     size = data.get("size")
     if (size=="XS"):
-        cost = data.get("cost")
+        cost = int(data.get("cost"))
     else: 
         if (size=="S"):
             cost = int(int(data.get("cost"))*1.05)
@@ -35,54 +35,14 @@ def basket_add(request):
             cost = int(int(data.get("cost"))*1.15)
         if (size=="XL"):
             cost = int(int(data.get("cost"))*1.20)
-    new_product= Basket.objects.create(user=request.user, product_id=product_id, quantity=quantity, size=size, price=cost)
-    
-    
-    # is_delete = data.get("is_delete")
+    quantity_price=int(quantity*cost)
 
-    # if is_delete == 'true':
-    #     ProductInBasket.objects.filter(id=product_id).update(is_active=False)
-    # else:
-    #     
-    #     if not created:
-    #         print ("not created")
-    #         new_product.nmb += int(nmb)
-    #         new_product.save(force_update=True)
+    is_delete = data.get("is_delete")
+
+    if is_delete == 'true':
+        Basket.objects.filter(id=product_id).update(is_active=False)
+    else:
+        new_product= Basket.objects.create(user=request.user, product_id=product_id, quantity=quantity, size=size, price=cost,quantity_price=quantity_price)
     return JsonResponse(return_dict)
-    # product = Product.objects.get(id=product_id)
-    # baskets = Basket.objects.filter(user=request.user, product=product)
-    # if not baskets.exists():
-    #     Basket.objects.create(user=request.user, product=product, quantity=1)
-    #     #is_created = True
-    # else:
-    #     basket = baskets.first()
-    #     basket.quantity += 1
-    #     basket.save()
-    #     #is_crated = False
-    # return HttpResponseRedirect(reverse('orders:order'))
+    #return HttpResponseRedirect(reverse('orders:order'))
 
-#APIViews
-
-#class BasketAPIViews(APIView):
-    
-    # permission_classes = [IsAuthenticated]#типа что это идет только с авторизованными пользователями
-
-    # def post(self, request):
-    #     serializer = BasketSerializer(data=request.data)#создаем сериализатор и передаем туда данные из post запроса
-    #     if serializer.is_valid():
-    #         product_id = serializer.validated_data.get("product")
-    #         size = serializer.validated_data.get("size")  # Добавьте получение размера
-    #         quantity = serializer.validated_data.get("quantity")
-
-    #         product = Product.objects.get(pk=product_id)  # Добавьте логику получения продукта по ID
-            
-    #         cart_item, created = Basket.objects.get_or_create(
-    #             user=request.user,
-    #             product=product,
-    #             size=size  # Сохраните размер в CartItem
-    #         )
-    #         if not created:
-    #             cart_item.quantity += quantity
-    #             cart_item.save()
-    #         return Response(serializer.data, status=201)
-    #     return Response(serializer.errors, status=400)

@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from products.models import Product, Size
+from django.conf import settings
 
 # Create your models here.
 
@@ -23,8 +24,16 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     price = models.IntegerField()
     size = models.CharField(default="XS", max_length=4)
+    quantity_price=models.IntegerField(default=1)
+    is_active=models.BooleanField(default=True)
     #order_number = modelsField#надо исправить это пока просто текст чтобы не давало ошибку
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    # def get_image_url(self):
+    #        """Возвращает полный URL изображения с учетом MEDIA_URL."""
+    #        if self.image:
+    #            return f"{settings.MEDIA_URL}{self.image.name}"
+    #        return None
 
 
     def __str__(self):
