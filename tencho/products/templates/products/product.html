@@ -27,7 +27,7 @@
                     <p>Доступные размеры:</p>
                     <div class="sizes product-sizes">
                         {% for size in sizes %}
-                            <div class="size-option" data-size="{{ size.id }}">{{ size.name }}</div>
+                            <button type="button" value="{{size.name}}" onclick="fillForm(this)" class="size-option" data-size="{{ size.id }}">{{ size.name }}</button>
                         {% endfor %}
                     </div>
                     <div class="order-block">
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <!--Тут применяется itemscount.js-->
                                 <!--<button class="number-minus minus" type="button">-</button>-->
-                                <input type="text" class="form-control" name="size" id="size" placeholder="Размер">
+                                <input type="text" class="form-control" name="size" id="size" placeholder="Размер" readonly>
                                 <!--<button class="number-plus plus" type="button">+</button>-->
                                 </div>
                             

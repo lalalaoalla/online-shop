@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import Basket
 from products.models import Product,Size 
-from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -25,7 +24,17 @@ def basket_add(request):
     product_id = data.get("product_id")
     quantity = data.get("quantity")
     size = data.get("size")
-    cost = data.get("cost")
+    if (size=="XS"):
+        cost = data.get("cost")
+    else: 
+        if (size=="S"):
+            cost = int(int(data.get("cost"))*1.05)
+        if (size == "M"):
+            cost = int(int(data.get("cost"))*1.1)
+        if (size=="L"):
+            cost = int(int(data.get("cost"))*1.15)
+        if (size=="XL"):
+            cost = int(int(data.get("cost"))*1.20)
     new_product= Basket.objects.create(user=request.user, product_id=product_id, quantity=quantity, size=size, price=cost)
     
     
