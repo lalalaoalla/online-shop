@@ -15,7 +15,6 @@
 {% block content %}
         <div class="product-form">
             <div class="product-top">
-                <!--Отсюда начинается genproduct.js-->
                 <img src="{{product.get_image_url}}" class="product-img" alt="{{product.name}}">
                 <div class="info-block">
                     <h1 class="product-title">
@@ -35,18 +34,13 @@
                             {% csrf_token %}
                             <div class="number">
                                 <div class="form-group">
-                                <!--Тут применяется itemscount.js-->
-                                <!--<button class="number-minus minus" type="button">-</button>-->
                                 <input type="number" class="form-control" name="number" id="number" placeholder="Количество">
-                                <!--<button class="number-plus plus" type="button">+</button>-->
                                 </div>
                                 
                             </div>
                             <div class="form-group">
-                                <!--Тут применяется itemscount.js-->
-                                <!--<button class="number-minus minus" type="button">-</button>-->
                                 <input type="text" class="form-control" name="size" id="size" placeholder="Размер" readonly>
-                                <!--<button class="number-plus plus" type="button">+</button>-->
+                                
                                 </div>
                             
                             
@@ -76,7 +70,7 @@
             <p class="new-title">Похожие товары</p>
             <div class="new-items">
                 {% for another_product in similars_products%}
-                {% if another_product.category == product.category and counter < 4 and another_product.name != product.name%}
+                {% if another_product.category == product.category and counter < 3 and another_product.name != product.name%}
                 <div class="item">
                     <div class="item-content">
                     <span class="detailed" onclick="modalWindow(this)" data-name="{{another_product.name}}" data-cost="{{another_product.cost}}"  data-img="{{another_product.image}}" data-desc="{{another_product.description}}" data-category="{{another_product.category}}">Подробнее</span>
@@ -86,6 +80,7 @@
                     <a href="/product_detail/{{another_product.id}}" onclick="buy(this)" data-name="{{another_product.name}}" data-cost="{{another_product.cost}}"  data-img="{{another_product.image}}" data-desc="{{another_product.description}}" data-category="{{another_product.category}}">Купить</a>
                     </div>
                     </div>
+                    
                     {% endif %}
                     
                 {% endfor %}
