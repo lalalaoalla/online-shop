@@ -12,7 +12,7 @@ admin.site.register(Status, StatusAdmin)
 
 class BasketAdmin(admin.ModelAdmin):
     search_fields=['user','product','size']
-
+    list_display = [field.name for field in Basket._meta.fields]#поля для отображения
     class Meta:
         model = Basket
 
