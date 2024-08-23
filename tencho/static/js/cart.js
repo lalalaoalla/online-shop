@@ -3,7 +3,7 @@ var fillForm;
 $(document).ready(function(){//после загрузки полной
     
 
-    function basketUpdating(product_id, quantity,size, cost,is_delete){
+    function basketUpdating(product_id, quantity,size, cost){
         var data = {};//какие-то наши передаваемые данные
             data.product_id = product_id;// ну добавили то, что у нас есть
             data.quantity = quantity;
@@ -11,17 +11,15 @@ $(document).ready(function(){//после загрузки полной
             data.cost = parseInt(cost);
             
             // csrf наше
-            if (is_delete=false){
-                var csrf_token = $('#form_buying_product [name="csrfmiddlewaretoken"]').val();
-             data["csrfmiddlewaretoken"] = csrf_token;
-            }
-             
-
-             if (is_delete=true){
-                var csrf_token = $('#form_delete_product [name="csrfmiddlewaretoken"]').val();
-                data["csrfmiddlewaretoken"] = csrf_token;
-                data["is_delete"] = true;
-            }
+            var csrf_token = $('#form_buying_product [name="csrfmiddlewaretoken"]').val();
+            data["csrfmiddlewaretoken"] = csrf_token;
+            //data["is_delete"] = is_delete; 
+            
+            // if (is_delete=true){
+            //     // var csrf_token = $('#form_delete_product [name="csrfmiddlewaretoken"]').val();
+            //     // data["csrfmiddlewaretoken"] = csrf_token;
+            //     data["is_delete"] = true;
+            // }
 
             //url откуда считываем
              var url = form.attr("action");
@@ -63,18 +61,18 @@ $(document).ready(function(){//после загрузки полной
         console.log(cost);
         console.log(category);
 
-        basketUpdating(product_id, quantity, size, cost, is_delete=false)
+        basketUpdating(product_id, quantity, size, cost)
 
         
     })
     $(document).on('click', '.delete-item', function(e){
         e.preventDefault();
         product_id = $(this).data("product_id")
-        quantity = 0;
-        size = 0;
-        cost=0;
+        // quantity = 0;
+        // size = 0;
+        // cost=0;
 
-        basketUpdating(product_id, quantity, size, cost, is_delete=true)
+        basketUpdating(product_id, 0, 0, 0, true)
     })
 });
 

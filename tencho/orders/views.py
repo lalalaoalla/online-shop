@@ -16,10 +16,9 @@ def cart(request):
     }
     return render(request, 'orders/cart.html', context)
 
+#обработчики событий
 def basket_add(request):
     return_dict = dict()
-    #session_key = request.session.session_key
-    print (request.POST)
     data = request.POST
     product_id = data.get("product_id")
     quantity = int(data.get("quantity"))
@@ -37,12 +36,21 @@ def basket_add(request):
             cost = int(int(data.get("cost"))*1.20)
     quantity_price=int(quantity*cost)
 
-    is_delete = data.get("is_delete")
-
-    if is_delete == 'true':
-        Basket.objects.filter(id=product_id).update(is_active=False)
-    else:
-        new_product= Basket.objects.create(user=request.user, product_id=product_id, quantity=quantity, size=size, price=cost,quantity_price=quantity_price)
+    new_product= Basket.objects.create(user=request.user, product_id=product_id, quantity=quantity, size=size, price=cost,quantity_price=quantity_price)
     return JsonResponse(return_dict)
     #return HttpResponseRedirect(reverse('orders:order'))
+
+def basket_delete(request):
+    return_dict = dict()
+    
+    data = request.POST
+
+    basket_id = data.get("basket_id")
+    print(basket_id)
+    is_del = Basket.objects.filter(id=basket_id).update(is_active=False)
+    print(is_del)
+    return_dict['success'] = True if is_del else False
+    return HttpResponseRedirect(reverse('orders:order'))
+    #return JsonResponse(return_dict)
+    
 
