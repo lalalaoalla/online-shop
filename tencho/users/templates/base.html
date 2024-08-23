@@ -74,7 +74,9 @@
                 {% endif %}
                 <a href="#contacts">Контакты</a>
                 <a href="{% url 'users:login'%}" class="hided-menu">Войти</a>
+                {% if user.is_authenticated%}
                 <a href="{% url 'orders:order'%}" class="hided-menu">Корзина</a>
+                {% endif %}
             </div>
             <div class="icons">
                 <a href="{% url 'users:login'%}">
@@ -88,6 +90,7 @@
                             fill="#5F9D9F" />
                     </svg>
                 </a>
+                {% if user.is_authenticated%}
                 <a href="{% url 'orders:order'%}">
                     <svg class="cart" width="41" height="40" viewBox="0 0 41 40" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -102,6 +105,7 @@
                             fill="#5F9D9F" />
                     </svg>
                 </a>
+                {% endif %}
             </div>
             <div class="burger">
                 <span></span>
