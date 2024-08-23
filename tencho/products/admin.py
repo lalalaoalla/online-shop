@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 class CategoryProductAdmin(admin.ModelAdmin):
-    list_display=['name']
+    list_display=['name', 'code']
 
     class Meta:
         model= CategoryProducts

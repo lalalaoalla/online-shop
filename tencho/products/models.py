@@ -6,6 +6,7 @@ from django.conf import settings
 
 class CategoryProducts(models.Model):
     name=models.CharField(max_length=128,unique=True)
+    code=models.CharField(max_length=128, default='empty')
 
     class Meta: 
         verbose_name='Категория'
