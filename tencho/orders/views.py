@@ -42,9 +42,7 @@ def basket_add(request):
 
 def basket_delete(request):
     return_dict = dict()
-    
     data = request.POST
-
     basket_id = data.get("basket_id")
     print(basket_id)
     is_del = Basket.objects.filter(id=basket_id).update(is_active=False)
